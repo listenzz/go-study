@@ -30,6 +30,30 @@ func TestErrorType(t *testing.T) {
 	}
 }
 
-func TestWrap(t *testing.T) {
+func TestPkgWrap(t *testing.T) {
+	err := pkgWrap()
+	if err != nil {
+		fmt.Printf("%+v\n", err)
+	}
+}
 
+func TestStdWrap(t *testing.T) {
+	err := stdWrap()
+	if err != nil {
+		fmt.Printf("%+v\n", err)
+	}
+}
+
+func TestDoubleWrap(t *testing.T) {
+	err := doubleWrap()
+	if err != nil {
+		fmt.Printf("%+v\n", err)
+	}
+}
+
+func TestNew(t *testing.T) {
+	err := newError()
+	if err != nil {
+		fmt.Printf("%+v\n", err)
+	}
 }

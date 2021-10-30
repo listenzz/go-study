@@ -18,7 +18,39 @@ func main() {
 }
 
 func doStuff() error {
-	return errors.Wrap(ErrNotFound, "干活的时候")
+
+	return ErrNotFound
+}
+
+// sentinal error 或者  type error
+// opaque error
+
+func pkgWrap() error {
+	err := doStuff()
+	if err != nil {
+		return errors.Wrap(err, "pkg 干活的时候")
+	}
+	return nil
+}
+
+func stdWrap() error {
+	err := doStuff()
+	if err != nil {
+		return fmt.Errorf("std 干活的时候, %w", err)
+	}
+	return nil
+}
+
+func doubleWrap() error {
+	err := stdWrap()
+	if err != nil {
+		return errors.Wrap(err, "doulbe wrap")
+	}
+	return nil
+}
+
+func newError() error {
+	return errors.New("这是一个新错误")
 }
 
 type MyError struct {
